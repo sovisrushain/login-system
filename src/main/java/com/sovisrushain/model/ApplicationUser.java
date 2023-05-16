@@ -15,6 +15,7 @@ public class ApplicationUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private Integer userId;
+    @Column(unique = true)
     private String username;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
@@ -27,7 +28,7 @@ public class ApplicationUser implements UserDetails {
 
     public ApplicationUser() {
         super();
-        this.authorities = new HashSet<Role>();
+        this.authorities = new HashSet<>();
     }
 
     public ApplicationUser(Integer userId, String username, String password, Set<Role> authorities) {
